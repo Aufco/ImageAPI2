@@ -9,12 +9,13 @@ listen to the heartbeat of a baby otter.
 
 result = client.images.generate(
     model="gpt-image-1",
-    prompt=prompt
+    prompt=prompt,
+    moderation="low"
 )
 
 image_base64 = result.data[0].b64_json
 image_bytes = base64.b64decode(image_base64)
 
 # Save the image to a file
-with open("/home/benau/ImageAPI2/otter.png", "wb") as f:
+with open("/home/benau/ImageAPI2/generated_image/otter.png", "wb") as f:
     f.write(image_bytes)

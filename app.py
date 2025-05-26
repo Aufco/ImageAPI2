@@ -21,7 +21,8 @@ def generate_image():
         
         result = client.images.generate(
             model="gpt-image-1",
-            prompt=prompt
+            prompt=prompt,
+            moderation="low"
         )
         
         image_base64 = result.data[0].b64_json
@@ -44,7 +45,7 @@ def save_image():
             return jsonify({'error': 'Image data and filename are required'}), 400
         
         image_bytes = base64.b64decode(image_data)
-        filepath = os.path.join('/home/benau/ImageAPI2', filename)
+        filepath = os.path.join('/home/benau/ImageAPI2/generated_image', filename)
         
         with open(filepath, 'wb') as f:
             f.write(image_bytes)
